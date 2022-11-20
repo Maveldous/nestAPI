@@ -12,7 +12,10 @@ export class UsersService {
   ) {}
 
   async getById(id: number) {
-    const user = await this.usersRepository.findOne({ where: { id } });
+    const user = await this.usersRepository.findOne({
+      where: { id },
+      relations: ['address', 'posts'],
+    });
     if (user) {
       return user;
     }

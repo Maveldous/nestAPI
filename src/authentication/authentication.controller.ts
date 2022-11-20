@@ -17,9 +17,10 @@ import { Response } from 'express';
 import JwtAuthenticationGuard from './jwt-authentication.guard';
 
 @Controller('authentication')
-@SerializeOptions({
-  strategy: 'excludeAll',
-})
+// Add to exclude all fields from response
+// @SerializeOptions({
+//   strategy: 'excludeAll',
+// })
 export class AuthenticationController {
   constructor(private readonly authenticationService: AuthenticationService) {}
 

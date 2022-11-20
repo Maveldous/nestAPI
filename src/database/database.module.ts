@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import Post from 'src/posts/post.entity';
 import User from 'src/users/user.entity';
+import Address from 'src/users/addres.entity';
+import Category from 'src/categories/category.entity';
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import User from 'src/users/user.entity';
         database: configService.get('POSTGRES_DB'),
         // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
-        entities: [Post, User],
+        entities: [Post, User, Address, Category],
       }),
     }),
   ],
