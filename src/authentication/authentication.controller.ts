@@ -7,7 +7,6 @@ import {
   Post,
   Get,
   UseGuards,
-  SerializeOptions,
 } from '@nestjs/common';
 import RegisterDto from './dto/register.dto';
 import RequestWithUser from './requestWithUser.interface';

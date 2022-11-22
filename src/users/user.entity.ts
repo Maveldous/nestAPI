@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
 } from 'typeorm';
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude } from 'class-transformer';
 import Address from './addres.entity';
 import Post from '../posts/post.entity';
 

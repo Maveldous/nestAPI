@@ -6,9 +6,13 @@ import { UsersService } from '../../users/users.service';
 describe('The UsersService', () => {
   let usersService: UsersService;
   let findOne: jest.Mock;
+  let save: jest.Mock;
+  let create: jest.Mock;
 
   beforeEach(async () => {
     findOne = jest.fn();
+    save = jest.fn();
+    create = jest.fn();
     const module = await Test.createTestingModule({
       providers: [
         UsersService,
@@ -16,6 +20,8 @@ describe('The UsersService', () => {
           provide: getRepositoryToken(User),
           useValue: {
             findOne,
+            save,
+            create,
           },
         },
       ],
@@ -47,6 +53,22 @@ describe('The UsersService', () => {
           usersService.getByEmail('test@test.com'),
         ).rejects.toThrow();
       });
+    });
+  });
+
+  describe('when create user', () => {
+    let user: User;
+
+    beforeEach(() => {
+      user = new User();
+      create.mockReturnValue(Promise.resolve(user));
+    });
+
+    it('should create user', async () => {
+      const createdUser = await usersService.create(user);
+
+      expect(createdUser).toEqual(user);
+      expect(save).toHaveBeenCalled();
     });
   });
 });
